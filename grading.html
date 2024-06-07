@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grading Website</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        width: 80%;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h2 {
+        text-align: center;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    tr:hover {
+        background-color: #f2f2f2;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Student Grades</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Math Grade</th>
+                <th>Science Grade</th>
+                <th>English Grade</th>
+                <th>Total Grade</th>
+                <th>Average Grade</th>
+            </tr>
+        </thead>
+        <tbody id="gradeTableBody">
+            <!-- Grades will be dynamically added here -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Sample student grades data (you can replace this with actual data from your system)
+    const studentGrades = [
+        { name: "John Doe", math: 85, science: 90, english: 88 },
+        { name: "Jane Smith", math: 92, science: 88, english: 90 },
+        { name: "Alice Johnson", math: 78, science: 85, english: 80 }
+    ];
+
+    // Function to calculate total and average grades for each student
+    function calculateGrades() {
+        const tableBody = document.getElementById('gradeTableBody');
+        tableBody.innerHTML = '';
+
+        studentGrades.forEach(student => {
+            const totalGrade = student.math + student.science + student.english;
+            const averageGrade = totalGrade / 3;
+
+            const row = `<tr>
+                            <td>${student.name}</td>
+                            <td>${student.math}</td>
+                            <td>${student.science}</td>
+                            <td>${student.english}</td>
+                            <td>${totalGrade}</td>
+                            <td>${averageGrade.toFixed(2)}</td>
+                        </tr>`;
+            tableBody.innerHTML += row;
+        });
+    }
+
+    // Call the function initially to populate the table
+    calculateGrades();
+</script>
+
+</body>
+</html>
